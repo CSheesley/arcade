@@ -68,7 +68,7 @@ router.put("/:id", function(req, res, next) {
 )
     .then(game => {
     res.setHeader("Content-Type", "application/json");
-    res.status(201).send(JSON.stringify(game));
+    res.status(202).send(JSON.stringify(game));
   })
     .catch(error => {
     res.setHeader("Content-Type", "application/json");
@@ -76,6 +76,22 @@ router.put("/:id", function(req, res, next) {
   });
 });
 
+// Delete existing game
+router.delete("/:id", function(req, res, next) {
+  Game.destroy({
+    where:{
+      id: req.params.id
+    }
+  })
+    .then(game => {
+    res.setHeader("Content-Type", "application/json");
+    res.status(204).send(JSON.stringify(game));
+  })
+    .catch(error => {
+    res.setHeader("Content-Type", "application/json");
+    res.status(500).send({ error });
+  });
+});
 
 //keep at bottom of file
 module.exports = router
