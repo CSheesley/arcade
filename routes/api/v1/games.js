@@ -50,7 +50,6 @@ router.post("/", function(req, res, next) {
   });
 });
 
-
 // Update existing game
 router.put("/:id", function(req, res, next) {
   Game.update({
